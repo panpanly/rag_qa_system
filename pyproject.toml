@@ -1,0 +1,38 @@
+[project]
+name = "rag-qa-system"
+version = "0.1.0"
+description = "业级私有化 RAG 智能问答系统"
+readme = "README.md"
+authors = [
+    { name = 'LAPTOP-S7JRK4OE\Ming', email = "962886827@qq.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "chromadb==0.5.17",
+    "docx2txt==0.8",
+    "faiss-cpu==1.9.0",
+    "fastapi==0.115.0",
+    "langchain==0.3.7",
+    "langchain-community==0.3.5",
+    "langchain-huggingface==0.1.0",
+    "langchain-openai==0.2.4",
+    "markdown==3.7",
+    "openpyxl==3.1.5",
+    "pandas==2.2.3",
+    "pydantic-settings==2.5.2",
+    "pymupdf==1.24.13",
+    "python-dotenv==1.0.1",
+    "python-multipart==0.0.12",
+    "sentence-transformers==3.1.1",
+    "streamlit==1.39.0",
+    "tqdm==4.66.5",
+    "unstructured==0.16.1",
+    "uvicorn[standard]==0.30.6",
+]
+
+[project.scripts]
+rag-qa-system = "rag_qa_system:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
