@@ -12,3 +12,9 @@ wheels/
 
 .idea/
 *.iml
+
+vector_db/
+upload/
+data/
+models/
+app.log

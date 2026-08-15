@@ -27,10 +27,32 @@ class Settings(BaseSettings):
 
     # 向量数据库配置
     VECTOR_STORE_TYPE:Literal["faiss","chroma"] = "chroma"
-    EMBEDDING_MODEL_NAME:str = "BAAI/bge-small-zh"
+    EMBEDDING_MODEL_NAME:str = "bge_small_zh"
     EMBEDDING_DEVICE:str = "cpu"
     CHUNK_SIZE:int = 500
     CHUNK_OVERLAP:int = 50
+
+    # 检索配置
+    SEARCH_TOP_K:int = 5
+    USE_RERANKER:bool = True
+    RERANKER_MODEL_NAME:str = "bge_reranker_base"
+
+    # LLM配置
+    LLM_PROVIDER : Literal["openai","siliconflow","ollama"] = "siliconflow"
+
+    # ollama配置
+    OLLAMA_BASE_URL:str = "http://localhost:11434"
+    OLLAMA_MODEL_NAME:str = "qwen2.5:7b"
+
+    # OpenAI配置
+    OPENAI_API_KEY:str = ""
+    OPENAI_BASE_URL:str = "https://api.openai.com/v1"
+    OPENAI_MODEL_NAME:str = "gpt-3.5-turbo"
+
+    # SiliconFlow配置
+    SILICONFLOW_API_KEY:str = "sk-epxjttpofbyimjnepppiwydgbzerbiiadlfrasanrhhfiujw"
+    SILICONFLOW_BASE_URL:str = "https://api.siliconflow.cn/v1"
+    SILICONFLOW_MODEL_NAME: str = "Qwen/Qwen2.5-7B-Instruct"
 
 
     # 日志配置

@@ -1,15 +1,16 @@
 """
 FastApi 应用入口
 """
+import os
+os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from src.rag_qa_system.config.setting import settings
 from src.rag_qa_system.config.logging_config import setup_logging
-from src.rag_qa_system.api.routes import upload_router
+from src.rag_qa_system.api.routes import upload_router,qa_router
 from src.rag_qa_system.tools.vector_store import get_vector_store_manager
 import uvicorn
-
 
 setup_logging()
 
@@ -45,6 +46,7 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(upload_router,prefix="/api/v1")
+app.include_router(qa_router,prefix="/api/v1")
 
 
 # 接口安全校验

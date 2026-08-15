@@ -3,8 +3,6 @@
 embeeding 模型加载模块-采用单列模式，支持本地缓存，与HuggingFace自动下载
 """
 import logging
-import os
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 from huggingface_hub import snapshot_download
 from langchain_huggingface import HuggingFaceEmbeddings
 from src.rag_qa_system.config.setting import settings
@@ -25,13 +23,16 @@ class EmbeddingModel:
         """下载模型到本地"""
         model_name = settings.EMBEDDING_MODEL_NAME
         local_model_path = settings.MODELS_DIR / model_name.replace("/", "_")
-
-        snapshot_download(
-            repo_id=model_name,
-            local_dir=local_model_path,
-            local_dir_use_symlinks=False,  # windows必须关闭软链接
-            resume_download=True
-        )
+        if local_model_path.exists():
+            print(f"本地模型{model_name}已下载")
+            return
+        else:
+            snapshot_download(
+                repo_id=model_name,
+                local_dir=local_model_path,
+                local_dir_use_symlinks=False,  # windows必须关闭软链接
+                resume_download=True
+            )
 
     def _initialize(self):
         """初始化嵌入模型"""
