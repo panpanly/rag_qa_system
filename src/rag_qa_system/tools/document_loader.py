@@ -26,7 +26,7 @@ class DocumentLoader:
 
     def __init__(self,chunk_size:int = None,chunk_overlap:int = None):
         self.chunk_size = chunk_size or settings.CHUNK_SIZE
-        self.chunk_overlap = chunk_overlap or settings.chunk_overlap
+        self.chunk_overlap = chunk_overlap or settings.CHUNK_OVERLAP
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=self.chunk_size,
             chunk_overlap=self.chunk_overlap,
@@ -37,7 +37,7 @@ class DocumentLoader:
     def load_file(self, file_path:str, metadata:dict = None) -> list:
         """加载单个文件"""
         file_path_obj = Path(file_path)
-        if file_path_obj.exists():
+        if not file_path_obj.exists():
             logging.error(f"文件不存在:{file_path_obj}")
             return []
 

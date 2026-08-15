@@ -119,9 +119,9 @@ class RAGChain:
             sources = []
             for doc in source_docs:
                 sources.append({
-                    "source":doc.metadata.get("filename",doc.metadata.get("source","未知")),
+                    "source":doc.metadata.get("file_name",doc.metadata.get("source","未知")),
                     "page":doc.metadata.get("page",1),
-                    "content":doc.page.content[:200] + '...'  if len(doc.page_content) > 200 else doc.page_content
+                    "content":doc.page_content[:200] + '...'  if len(doc.page_content) > 200 else doc.page_content
                 })
             # 3、更新对话历史
             self.memory_manager.add_exchange(session_id,question,answer)
