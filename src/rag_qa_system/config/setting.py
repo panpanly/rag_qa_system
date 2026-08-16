@@ -7,6 +7,10 @@ Literal - 限制变量只能取指定的几个字面量值，做字面量类型�
 from pathlib import Path
 from typing import Literal
 from pydantic_settings import BaseSettings
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Settings(BaseSettings):
@@ -50,7 +54,7 @@ class Settings(BaseSettings):
     OPENAI_MODEL_NAME:str = "gpt-3.5-turbo"
 
     # SiliconFlow配置
-    SILICONFLOW_API_KEY:str = "sk-epxjttpofbyimjnepppiwydgbzerbiiadlfrasanrhhfiujw"
+    SILICONFLOW_API_KEY:str = os.getenv("SILICONFLOW_API_KEY")
     SILICONFLOW_BASE_URL:str = "https://api.siliconflow.cn/v1"
     SILICONFLOW_MODEL_NAME: str = "Qwen/Qwen2.5-7B-Instruct"
 
@@ -61,7 +65,7 @@ class Settings(BaseSettings):
 
     # 安全配置
     ALLOWED_ORIGINS: list[str] = ["http://localhost:8501"]
-    SECRET_KEY: str = "your-secret-key"
+    SECRET_KEY: str = ""
 
     # 服务配置
     API_HOST: str = "localhost"

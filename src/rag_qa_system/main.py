@@ -1,8 +1,6 @@
 """
 FastApi 应用入口
 """
-import os
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
